@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject asteroid;
+    public GameObject largeAsteroid;
     private int asteroidsRemaining;
     // Start is called before the first frame update
     void Start()
@@ -25,19 +25,20 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < asteroidsRemaining; i++)
         {
-
             // Spawn an asteroid
-            Instantiate(asteroid,
-                new Vector3(Random.Range(-9.0f, 9.0f),
-                    Random.Range(-6.0f, 6.0f), 0),
-                Quaternion.Euler(0, 0, Random.Range(-0.0f, 359.0f)));
-
+            Instantiate(largeAsteroid,
+						new Vector3(Random.Range(-9.0f, 9.0f), Random.Range(-6.0f, 6.0f), 0),
+						Quaternion.Euler(0, 0, Random.Range(-0.0f, 359.0f)));
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButton("Cancel"))
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
     }
 }

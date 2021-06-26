@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 844602011}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9aa25a92338f5489f6022d66cecebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroid: {fileID: 0}
+  largeAsteroid: {fileID: 4668677973710963429, guid: ade37ef3065b0e94787c379433036b42, type: 3}
 --- !u!4 &844602012
 Transform:
   m_ObjectHideFlags: 0
