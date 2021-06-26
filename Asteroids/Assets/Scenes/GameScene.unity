@@ -311,10 +311,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   largeAsteroid: {fileID: 4668677973710963429, guid: ade37ef3065b0e94787c379433036b42, type: 3}
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
-  waveText: {fileID: 0}
-  hiscoreText: {fileID: 0}
+  scoreText: {fileID: 2046649755}
+  livesText: {fileID: 468394888}
+  waveText: {fileID: 1351485116}
+  hiscoreText: {fileID: 452459096}
 --- !u!4 &844602012
 Transform:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a76d1d1c916c674fac6f37156dacacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseForce: 10
+  impulseForce: 5
   rotationSpeed: 200
   bulletSpeed: 400
   bullet: {fileID: 6304668892524678712, guid: bfe2987eb81f53341ad5a7a7d9a1856a, type: 3}
