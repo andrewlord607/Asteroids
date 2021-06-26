@@ -39,7 +39,7 @@ public class AsteroidController : MonoBehaviour
         Split();
 
         //playsound
-        //_gameController.
+        _gameController.IncrementScore();
 
         Destroy(gameObject);
     }
@@ -48,18 +48,20 @@ public class AsteroidController : MonoBehaviour
 	{
         if (CompareTag("Small Asteroid"))
 		{
-            //_gameController.
+            _gameController.DecrementAsteroids();
             return;
 		}
 
         // Spawn small asteroids
         Instantiate(childAsteroid,
 					new Vector3(transform.position.x - .5f, transform.position.y - .5f, 0),
-					Quaternion.Euler(0, 0, 90));
+					Quaternion.Euler(0, 0, Random.Range(0,90)));
 
         // Spawn small asteroids
         Instantiate(childAsteroid,
                     new Vector3(transform.position.x + .5f,transform.position.y - .5f, 0),
-                    Quaternion.Euler(0, 0, 270));
+                    Quaternion.Euler(0, 0, Random.Range(180, 270)));
+
+        _gameController.SplitAsteroid();
     }
 }
