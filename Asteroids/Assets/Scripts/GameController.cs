@@ -1,21 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameObject largeAsteroid;
+    public GameObject ship;
 
     private int score;
     private int hiscore;
     private int asteroidsRemaining;
     private int lives;
-    private int wave;
-    private int increaseEachWave = 5;
 
     public Text scoreText;
     public Text livesText;
-    public Text waveText;
     public Text hiscoreText;
+
+    private Dictionary<string, int> scoreTable = new Dictionary<string, int>()
+    {
+        { "Large Asteroid", 20},
+        { "Medium Asteroid", 50},
+        { "Small Asteroid", 100}
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +41,14 @@ public class GameController : MonoBehaviour
     {
         score = 0;
         lives = 3;
-        wave = 1;
 
         // Prepare the HUD
         scoreText.text = "SCORE:" + score;
         hiscoreText.text = "HISCORE: " + hiscore;
         livesText.text = "LIVES: " + lives;
-        waveText.text = "WAVE: " + wave;
 
         SpawnAsteroids();
+        Instantiate(ship);
     }
 
     void SpawnAsteroids()
@@ -52,17 +57,17 @@ public class GameController : MonoBehaviour
 
         // Decide how many asteroids to spawn
         // If any asteroids left over from previous game, subtract them
-        asteroidsRemaining = increaseEachWave;
+        asteroidsRemaining = 5;
 
         for (int i = 0; i < asteroidsRemaining; ++i)
         {
             // Spawn an asteroid
             Instantiate(largeAsteroid,
 						new Vector3(
-							RandomValueInRangeWithExclude(-9.0f, -1.0f),
-							RandomValueInRangeWithExclude(-6.0f, -1.0f),
+							RandomValueInRangeWithExclude(-9.0f, -2.0f),
+							RandomValueInRangeWithExclude(-6.0f, -2.0f),
 							0),
-						Quaternion.Euler(0, 0, Random.Range(0.0f, 359.0f)));
+                        Quaternion.Euler(0, 0, Random.Range(0.0f, 359.0f)));
         }
     }
 
@@ -74,10 +79,10 @@ public class GameController : MonoBehaviour
         return sign * value;
     }
 
-    public void IncrementScore()
+    public void IncrementScore(string asteroidTag)
     {
-        score++;
-
+        score += scoreTable[asteroidTag];
+        
         scoreText.text = "SCORE:" + score;
 
         if (score > hiscore)
@@ -93,8 +98,6 @@ public class GameController : MonoBehaviour
         if (asteroidsRemaining < 1)
         {
             // Start next wave
-            wave++;
-            waveText.text = "WAVE: " + wave;
             SpawnAsteroids();
         }
     }
@@ -107,6 +110,13 @@ public class GameController : MonoBehaviour
         // Has player run out of lives?
         if (lives < 1)
             BeginGame(); // Restart the game
+        else
+            Invoke(nameof(Respawn), 2);
+    }
+
+    void Respawn()
+	{
+        Instantiate(ship);
     }
 
     public void DecrementAsteroids()

@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!58 &7928017142048895655
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432931099302128121}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.85
 --- !u!1001 &842137866064161564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,11 +25,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8760762570035983220, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: maxSpeed
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8760762570035983220, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: minSpeed
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -8760762570035983220, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: childAsteroid
@@ -31,25 +47,29 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Medium Asteroid
       objectReference: {fileID: 0}
+    - target: {fileID: 5075786845265190847, guid: ade37ef3065b0e94787c379433036b42, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1948384253646366586, guid: 6bd84c7f978d739409307967a3e8ce0f, type: 3}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0798767
+      value: -5.48
       objectReference: {fileID: 0}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5357511
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 6540550760137404162, guid: ade37ef3065b0e94787c379433036b42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,5 +103,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7325710055534287291, guid: ade37ef3065b0e94787c379433036b42, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ade37ef3065b0e94787c379433036b42, type: 3}
+--- !u!1 &5432931099302128121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4668677973710963429, guid: ade37ef3065b0e94787c379433036b42, type: 3}
+  m_PrefabInstance: {fileID: 842137866064161564}
+  m_PrefabAsset: {fileID: 0}

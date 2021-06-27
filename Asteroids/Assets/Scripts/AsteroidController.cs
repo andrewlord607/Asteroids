@@ -1,27 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class AsteroidController : MonoBehaviour
 {
+    public GameObject childAsteroid;
+
+    public AudioClip destroy;
+
     public float minSpeed = 50f;
     public float maxSpeed = 150f;
 
-    public float minAngularVelocity = 0f;
-    public float maxAngularVelocity = 90f;
-
-    public GameObject childAsteroid;
-
     private GameController _gameController;
-
     // Start is called before the first frame update
     void Start()
     {
         // Push the asteroid in the direction it is facing
         GetComponent<Rigidbody2D>().AddForce(transform.up * Random.Range( minSpeed, maxSpeed));
 
-        // Give a random angular velocity/rotation
-        GetComponent<Rigidbody2D>().angularVelocity = Random.Range(minAngularVelocity, maxAngularVelocity);
 
         var objectGameController = GameObject.FindGameObjectWithTag("GameController");
         if (objectGameController == null)
@@ -38,8 +33,9 @@ public class AsteroidController : MonoBehaviour
 
         Split();
 
-        //playsound
-        _gameController.IncrementScore();
+        AudioSource.PlayClipAtPoint(destroy, Camera.main.transform.position);
+
+        _gameController.IncrementScore(gameObject.tag);
 
         Destroy(gameObject);
     }
