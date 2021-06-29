@@ -10,6 +10,7 @@ public class Spaceship : MonoBehaviour
     public float shootCooldown = 1f;
 
     public GameObject bullet;
+    public Transform shootingPoint;
 
     public float bulletSpeed = 400f;
 
@@ -83,22 +84,22 @@ public class Spaceship : MonoBehaviour
 			{
                 // Spawn a bullet
                 var goBullet = Instantiate(bullet,
-                                           new Vector3(transform.position.x, transform.position.y, 0),
+                                           shootingPoint.position,
                                            transform.rotation);
 
                 // Push the bullet in the direction it is facing
-                goBullet.GetComponent<Rigidbody2D>().AddForce( (playerGameObject.transform.position - transform.position).normalized * bulletSpeed);
+                goBullet.GetComponent<Rigidbody2D>().AddForce( (playerGameObject.transform.position - shootingPoint.position).normalized * bulletSpeed);
             }
 		}
         else
 		{
             // Spawn a bullet
             var goBullet = Instantiate(bullet,
-                                       new Vector3(transform.position.x, transform.position.y, 0),
+                                       shootingPoint.position,
                                        transform.rotation);
 
             // Push the bullet in the direction it is facing
-            goBullet.GetComponent<Rigidbody2D>().AddForce(transform.up * bulletSpeed);
+            goBullet.GetComponent<Rigidbody2D>().AddForce(Vector2.down * bulletSpeed);
         }
 	}
 

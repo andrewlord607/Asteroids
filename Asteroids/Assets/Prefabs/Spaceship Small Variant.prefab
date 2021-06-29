@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.62666667
       objectReference: {fileID: 0}
+    - target: {fileID: 3986948077860595879, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.44
+      objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862217, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: m_Name
       value: Spaceship Small Variant
