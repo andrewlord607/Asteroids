@@ -11,17 +11,17 @@ public class PlayerController : MonoBehaviour
     public float maxVelocity = 3.0f;
 
     public GameObject bullet;
-    public GameObject shootingPoint;
-
+    public Transform shootingPoint;
     public GameObject thrustFire;
 
     public AudioClip shoot;
     public AudioClip explode;
 
     private GameController _gameController;
-	
-	// Start is called before the first frame update
-	void Start()
+    private Vector3 velocity = Vector3.zero;
+
+    // Start is called before the first frame update
+    private void Start()
     {
         var objectGameController = GameObject.FindGameObjectWithTag("GameController");
         if (objectGameController == null)
@@ -29,10 +29,7 @@ public class PlayerController : MonoBehaviour
         _gameController = objectGameController.GetComponent<GameController>();
     }
 
-    private Vector3 velocity = Vector3.zero;
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Mathf.Clamp01(Input.GetAxisRaw("Vertical"));
@@ -56,11 +53,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire"))
             Shoot();
     }
-    void Shoot()
+    private void Shoot()
     {
         // Spawn a bullet
         var goBullet = Instantiate(bullet,
-								   shootingPoint.transform.position,
+								   shootingPoint.position,
 								   transform.rotation);
 
         // Push the bullet in the direction it is facing
@@ -70,7 +67,7 @@ public class PlayerController : MonoBehaviour
         AudioSource.PlayClipAtPoint(shoot, Camera.main.transform.position);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         AudioSource.PlayClipAtPoint(explode, Camera.main.transform.position);
         gameObject.SetActive(false);
@@ -78,7 +75,7 @@ public class PlayerController : MonoBehaviour
         _gameController.DecrementLives();
     }
 
-    public void Reset()
+    public void Respawn()
     {
         transform.position = Vector3.zero;
         velocity = Vector3.zero;

@@ -10,6 +10,7 @@ TagManager:
   - Medium Asteroid
   - Small Spaceship
   - Spaceship
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX

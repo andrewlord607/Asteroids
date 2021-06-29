@@ -1,32 +1,30 @@
 using UnityEngine;
+using static Utils.AsteroidsUtils;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Spaceship : MonoBehaviour
 {
-    public bool moveToRight = true;
-
     public float speed = 10f;
-
-    public float shootCooldown = 1f;
-
-    public GameObject bullet;
-    public Transform shootingPoint;
-
+    public float shootCooldown = 100f;
     public float bulletSpeed = 400f;
-
     [Range(1, 10)]
     public int accuracy = 1;
 
+    public bool moveToRight = true;
     public float changeLineCooldown = 10f;
     public float timeToChangeLine = 0.5f;
+    public float reactivateCooldown = 5f;
+
+    public GameObject bullet;
+    public Transform shootingPointDown;
 
     private GameController _gameController;
+    private float _changeLineTimer = 0f;
     private float _shootCooldown = 0f;
     private float _changeLineCooldown = 0f;
-    private float _changeLineTimer = 0f;
     private Vector3 _changeLineDirection = Vector3.up;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         var objectGameController = GameObject.FindGameObjectWithTag("GameController");
         if (objectGameController == null)
@@ -34,77 +32,71 @@ public class Spaceship : MonoBehaviour
         _gameController = objectGameController.GetComponent<GameController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        var direction = (moveToRight ? Vector3.right : Vector3.left);
-        if (_changeLineTimer > 0)
-            direction += _changeLineDirection;
-        transform.position += direction * speed * Time.deltaTime;
-
         _shootCooldown += Time.deltaTime;
-        if(_shootCooldown >= shootCooldown)
-		{
+        if (_shootCooldown >= shootCooldown)
+        {
             _shootCooldown = 0;
             Shoot();
-		}
-
-        _changeLineCooldown += Time.deltaTime;
-        if(_changeLineCooldown >= changeLineCooldown)
-		{
-            _changeLineCooldown = 0;
-            _changeLineTimer = timeToChangeLine;
-            _changeLineDirection *= (Random.value < 0.5f ? -1f : 1f);
         }
 
-        if (_changeLineTimer > 0f)
-            _changeLineTimer -= Time.deltaTime;
+        _changeLineCooldown += Time.deltaTime;
+        if (_changeLineCooldown >= changeLineCooldown)
+        {
+            _changeLineCooldown = 0;
+            ChangeLine();
+        }
 
 
-        if (transform.position.x > 9 || transform.position.x < -9)
+        if (transform.position.x > GetWorldPositionOfBorder(Border.right).x || transform.position.x < GetWorldPositionOfBorder(Border.left).x)
         {
             gameObject.SetActive(false);
             moveToRight = !moveToRight;
-            Invoke(nameof(Reactivate), 5);
+            Invoke(nameof(Reactivate), reactivateCooldown);
         }
+
+        var direction = (moveToRight ? Vector3.right : Vector3.left);
+        if (_changeLineTimer > 0f)
+        {
+            direction += _changeLineDirection;
+            _changeLineTimer -= Time.deltaTime;
+        }
+        transform.position += direction * speed * Time.deltaTime;
     }
 
-    void Reactivate()
+    private void ChangeLine()
+	{
+        _changeLineTimer = timeToChangeLine;
+        _changeLineDirection *= RandomSign();
+    }
+
+    private void Reactivate()
 	{
         gameObject.SetActive(true);
 	}
 
-    void Shoot()
+    private void Shoot()
 	{
         var currentAccuracy = Random.Range(0, 10);
-        if(currentAccuracy < accuracy)
-		{
-            var playerGameObject = GameObject.FindGameObjectWithTag("Player");
-            if(playerGameObject != null)
-			{
-                // Spawn a bullet
-                var goBullet = Instantiate(bullet,
-                                           shootingPoint.position,
-                                           transform.rotation);
+        var playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        if (currentAccuracy < accuracy)
+            playerGameObject = null;
 
-                // Push the bullet in the direction it is facing
-                goBullet.GetComponent<Rigidbody2D>().AddForce( (playerGameObject.transform.position - shootingPoint.position).normalized * bulletSpeed);
-            }
-		}
-        else
-		{
-            // Spawn a bullet
-            var goBullet = Instantiate(bullet,
-                                       shootingPoint.position,
+        var targetPosition = playerGameObject != null ? playerGameObject.transform.position : GetRandomPointInsideBorder();
+        var startPosition = shootingPointDown.position;
+        var goBullet = Instantiate(bullet,
+                                       startPosition,
                                        transform.rotation);
 
-            // Push the bullet in the direction it is facing
-            goBullet.GetComponent<Rigidbody2D>().AddForce(Vector2.down * bulletSpeed);
-        }
-	}
+        goBullet.GetComponent<Rigidbody2D>().AddForce((targetPosition - startPosition).normalized * bulletSpeed);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy Bullet"))
+            return;
+
         _gameController.IncrementScore(gameObject.tag);
 
         Destroy(gameObject);

@@ -11,8 +11,8 @@ public class AsteroidController : MonoBehaviour
     public float maxSpeed = 150f;
 
     private GameController _gameController;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         // Push the asteroid in the direction it is facing
         GetComponent<Rigidbody2D>().AddForce(transform.up * Random.Range( minSpeed, maxSpeed));
@@ -26,7 +26,7 @@ public class AsteroidController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Bullet"))
+        if (!collision.gameObject.CompareTag("Bullet") && !collision.gameObject.CompareTag("Enemy Bullet"))
             return;
 
         Destroy(collision.gameObject);

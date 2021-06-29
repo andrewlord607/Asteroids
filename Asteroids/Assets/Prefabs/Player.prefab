@@ -127,7 +127,7 @@ MonoBehaviour:
   friction: 0.97
   maxVelocity: 3
   bullet: {fileID: 6304668892524678712, guid: bfe2987eb81f53341ad5a7a7d9a1856a, type: 3}
-  shootingPoint: {fileID: 8216512392545059105}
+  shootingPoint: {fileID: 4278294433966266685}
   thrustFire: {fileID: 3433829494452733898}
   shoot: {fileID: 8300000, guid: 8b6dacf065905d64c9f29a9d64b316e1, type: 3}
   explode: {fileID: 8300000, guid: a481e2f0738c38d4b8e6aeecf1fc7950, type: 3}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661a991cc258d9f4087574c17b9708c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  padding: 0.2
 --- !u!60 &3433829494012724964
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3986948077860595879}
   m_Layer: 0
-  m_Name: Shooting point
+  m_Name: Shooting point down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,6 +29,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6543098070688862228}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5936327573264428355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7336995256388517217}
+  m_Layer: 0
+  m_Name: Shooting point up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7336995256388517217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5936327573264428355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6543098070688862228}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6543098070688862217
 GameObject:
@@ -63,6 +93,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3986948077860595879}
+  - {fileID: 7336995256388517217}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,15 +160,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c356e1d5ab5a194b91ea5ce6c671139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveToRight: 1
-  speed: 4
-  shootCooldown: 1
-  bullet: {fileID: 6304668892524678712, guid: bfe2987eb81f53341ad5a7a7d9a1856a, type: 3}
-  shootingPoint: {fileID: 3986948077860595879}
+  speed: 2
+  shootCooldown: 2
   bulletSpeed: 400
   accuracy: 2
+  moveToRight: 1
   changeLineCooldown: 2
   timeToChangeLine: 0.2
+  reactivateCooldown: 5
+  bullet: {fileID: 5184069908922596500, guid: 0355e708f82637244ac95bb1f8856dee, type: 3}
+  shootingPointDown: {fileID: 3986948077860595879}
 --- !u!50 &6543098070688862229
 Rigidbody2D:
   serializedVersion: 4

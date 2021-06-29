@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3433829494012724964, guid: 64a71d83abb6ca0458695af6235d488c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64a71d83abb6ca0458695af6235d488c, type: 3}
 --- !u!1 &844602010
@@ -384,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   largeAsteroid: {fileID: 4668677973710963429, guid: ade37ef3065b0e94787c379433036b42, type: 3}
   player: {fileID: 672593190}
+  asteroidsToSpawn: 5
   scoreText: {fileID: 2046649755}
   livesText: {fileID: 468394888}
   hiscoreText: {fileID: 452459096}

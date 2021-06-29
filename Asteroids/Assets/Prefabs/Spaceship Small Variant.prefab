@@ -143,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862230, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: speed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862230, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: accuracy
@@ -151,7 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862230, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: shootCooldown
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862230, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: timeToChangeLine
@@ -159,12 +159,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862230, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: changeLineCooldown
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6543098070688862231, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6859215838964407468, guid: 6bd84c7f978d739409307967a3e8ce0f, type: 3}
+    - target: {fileID: 7336995256388517217, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.44
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3097375282549289824, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0eaa83f4fa5e4ee4690c5d1128065688, type: 3}

@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class InfinityMovement : MonoBehaviour
 {
-	[SerializeField]
-	private float padding = 0.2f;
+	public float padding = 0.2f;
 
 	private Vector3 viewportPos;
 
@@ -11,7 +10,6 @@ public class InfinityMovement : MonoBehaviour
 	private float bottom;
 	private float left;
 	private float right;
-
 
 	public virtual void Awake()
 	{
@@ -30,7 +28,7 @@ public class InfinityMovement : MonoBehaviour
 			transform.position = Camera.main.ViewportToWorldPoint(viewportPos);
 	}
 
-	bool CheckInBounds()
+	private bool CheckInBounds()
 	{
 		if (!CheckXBound() || !CheckYBound())
 			return false;
@@ -38,7 +36,7 @@ public class InfinityMovement : MonoBehaviour
 		return true;
 	}
 
-	bool CheckXBound()
+	private bool CheckXBound()
 	{
 		// check x
 		if (viewportPos.x < left)
