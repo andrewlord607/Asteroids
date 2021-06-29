@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float maxVelocity = 3.0f;
 
     public GameObject bullet;
+    public GameObject shootingPoint;
+
     public GameObject thrustFire;
 
     public AudioClip shoot;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         // Spawn a bullet
         var goBullet = Instantiate(bullet,
-								   new Vector3(transform.position.x, transform.position.y, 0),
+								   shootingPoint.transform.position,
 								   transform.rotation);
 
         // Push the bullet in the direction it is facing
@@ -70,13 +72,17 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        // Anything except a bullet is an asteroid
-        if (collider.gameObject.CompareTag("Bullet"))
-            return;
+        AudioSource.PlayClipAtPoint(explode, Camera.main.transform.position);
+        gameObject.SetActive(false);
 
         _gameController.DecrementLives();
+    }
 
-        AudioSource.PlayClipAtPoint(explode, Camera.main.transform.position);
-        Destroy(gameObject);
+    public void Reset()
+    {
+        transform.position = Vector3.zero;
+        velocity = Vector3.zero;
+
+        gameObject.SetActive(true);
     }
 }

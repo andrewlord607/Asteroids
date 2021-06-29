@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public GameObject largeAsteroid;
-    public GameObject ship;
+    public PlayerController player;
 
     private int score;
     private int hiscore;
@@ -16,11 +16,15 @@ public class GameController : MonoBehaviour
     public Text livesText;
     public Text hiscoreText;
 
+    public List<GameObject> spaceShips;
+
     private Dictionary<string, int> scoreTable = new Dictionary<string, int>()
     {
         { "Large Asteroid", 20},
         { "Medium Asteroid", 50},
-        { "Small Asteroid", 100}
+        { "Small Asteroid", 100},
+        { "Spaceship", 200},
+        { "Small Spaceship", 500}
     };
 
     // Start is called before the first frame update
@@ -37,7 +41,7 @@ public class GameController : MonoBehaviour
             Application.Quit();
     }
 
-    void BeginGame()
+	void BeginGame()
     {
         score = 0;
         lives = 3;
@@ -48,8 +52,20 @@ public class GameController : MonoBehaviour
         livesText.text = "LIVES: " + lives;
 
         SpawnAsteroids();
-        Instantiate(ship);
+        player.Reset();
+        InvokeRepeating(nameof(SpawnSpaceShip), 30, 30);
     }
+
+    void SpawnSpaceShip()
+	{
+        var spaceShip = spaceShips[Random.Range(0, spaceShips.Count)];
+
+        var randomPosX = 9f * (Random.value < 0.5 ? -1f : 1f);
+        var randomPosY = Random.Range(-6, 6);
+
+        var goSpaceShip = Instantiate(spaceShip, new Vector3(randomPosX, randomPosY, 0), Quaternion.identity);
+        goSpaceShip.GetComponent<Spaceship>().moveToRight = (randomPosX < 0);
+	}
 
     void SpawnAsteroids()
     {
@@ -91,7 +107,7 @@ public class GameController : MonoBehaviour
             hiscoreText.text = "HISCORE: " + hiscore;
 
             // Save the new hiscore
-            PlayerPrefs.SetInt("hiscore", hiscore);
+            PlayerPrefs.SetInt("Hiscore", hiscore);
         }
 
         // Has player destroyed all asteroids?
@@ -116,7 +132,7 @@ public class GameController : MonoBehaviour
 
     void Respawn()
 	{
-        Instantiate(ship);
+        player.Reset();
     }
 
     public void DecrementAsteroids()

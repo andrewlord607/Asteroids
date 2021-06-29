@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3433829494452733899}
+  - {fileID: 4278294433966266685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,9 +124,10 @@ MonoBehaviour:
   impulseForce: 5
   rotationSpeed: 200
   bulletSpeed: 400
-  friction: 0.99
+  friction: 0.97
   maxVelocity: 3
   bullet: {fileID: 6304668892524678712, guid: bfe2987eb81f53341ad5a7a7d9a1856a, type: 3}
+  shootingPoint: {fileID: 8216512392545059105}
   thrustFire: {fileID: 3433829494452733898}
   shoot: {fileID: 8300000, guid: 8b6dacf065905d64c9f29a9d64b316e1, type: 3}
   explode: {fileID: 8300000, guid: a481e2f0738c38d4b8e6aeecf1fc7950, type: 3}
@@ -252,3 +254,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8216512392545059105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4278294433966266685}
+  m_Layer: 0
+  m_Name: Shooting Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4278294433966266685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216512392545059105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3433829494012724960}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

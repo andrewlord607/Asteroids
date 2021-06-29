@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Small Asteroid
   - Medium Asteroid
+  - Small Spaceship
+  - Spaceship
   layers:
   - Default
   - TransparentFX
