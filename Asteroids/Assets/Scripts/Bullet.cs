@@ -1,12 +1,12 @@
 using UnityEngine;
 
+// Класс, который определяет поведение пули
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-        // Set the bullet to destroy itself after 1 seconds
-        Destroy(gameObject, 1.0f);
+        // Данный объект уничтожится спустя 1 секунду
+        Destroy(gameObject, 1f);
     }
 }
